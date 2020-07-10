@@ -10,11 +10,16 @@ int partition(int arr[], int l, int r)
 
 	while (true)
 	{
+		// Tìm phần tử lớn hơn hoặc bằng pivot ở bên trái
 		while (l <= r && pivot > arr[l]) l++;
+
+		// Tìm phần tử nhỏ hơn hoặc bằng pivot ở bên phải
 		while (l <= r && pivot < arr[r]) r--;
 
+		// l >= r thì thoát vòng lặp
 		if (l >= r) break;
 
+		// Đổi chỗ arr[l] và arr[r]
 		swap(arr[l], arr[r]);
 
 		l++;
@@ -30,12 +35,18 @@ void quickSort(int arr[], int l, int r)
 {
 	if (l < r) 
 	{
+		// Gọi hàm phân đoạn
 		int k = partition(arr, l, r);
+
+		// Gọi hàm Quick Sort mảng trái [l .. k-1]
 		quickSort(arr, l, k - 1);
+
+		// Gọi hàm Quick Sort mảng phải [k+1 .. r]
 		quickSort(arr, k + 1, r);
 	}
 }
 
+// Hàm Quick Sort với hai tham số
 void quickSort(int arr[], int size)
 {
 	quickSort(arr, 0, size - 1);
