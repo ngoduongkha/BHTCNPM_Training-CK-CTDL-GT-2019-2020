@@ -1,0 +1,2 @@
+D:\BHTCNPM_Training-CK-CTDL-GT-2019-2020\SelectionSort\Debug\SelectionSort.exe
+D:\BHTCNPM_Training-CK-CTDL-GT-2019-2020\SelectionSort\Debug\SelectionSort.pdb
