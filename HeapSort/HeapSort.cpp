@@ -1,30 +1,69 @@
-#include <iostream>
+﻿#include <iostream>
 
 using namespace std;
 
-void down_heap(int* a, int n, int i) {
-    while (i < n) {
-        int con = 2 * i + 1;
-        if (con >= n) break;
-        if (con + 1 < n && a[con] < a[con + 1]) con++;
-        if (a[con] > a[i]) {
-            swap(a[con], a[i]);
-            i = con;
+void downHeap(int arr[], int size, int i) 
+{
+    while (i < size)
+    {
+        int child = 2 * i + 1;
+
+        if (child >= size)
+            break;
+
+        if (child + 1 < size && arr[child] < arr[child + 1])
+            child++;
+
+        if (arr[child] > arr[i])
+        {
+            swap(arr[child], arr[i]);
+            i = child;
         }
-        else break;
+        else
+            break;
     }
 }
 
-int main() {
-    int a[100];
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; i++) cin >> a[i];
-    for (int i = n / 2 - 1; i >= 0; i--) down_heap(a, n, i);
-    for (int i = n - 1; i >= 0; i--) {
-        swap(a[0], a[i]);
-        down_heap(a, i, 0);
-    }
+void createHeap(int arr[], int size)
+{
+    for (int i = size / 2 - 1; i >= 0; i--)
+        downHeap(arr, size, i);
+}
 
-    for (int i = 0; i < n; i++) cout << a[i] << " ";
+void heapSort(int arr[], int size)
+{
+    createHeap(arr, size);
+    for (int i = size - 1; i >= 0; i--)
+    {
+        swap(arr[0], arr[i]);
+        downHeap(arr, i, 0);
+    }
+}
+
+int main()
+{
+    int size;
+    int* arr;
+
+    cout << "Nhap kich thuoc mang: ";
+    cin >> size;
+
+    // Cấp phát bộ nhớ
+    arr = new int[size];
+
+    // Khởi tạo mảng random với size phần tử
+    for (int i = 0; i < size; i++)
+        arr[i] = rand();
+
+    // Gọi hàm Heap Sort
+    heapSort(arr, size);
+
+    // Xuất kết quả
+    cout << "Ket qua: ";
+    for (int i = 0; i < size; i++)
+        cout << arr[i] << " ";
+    cout << "\n";
+
+    delete[] arr;
+    return 0;
 }

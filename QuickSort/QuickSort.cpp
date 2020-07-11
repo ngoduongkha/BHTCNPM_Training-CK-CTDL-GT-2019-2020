@@ -76,6 +76,6 @@ int main()
 		cout << arr[i] << " ";
 	cout << "\n";
 
-	delete arr;
+	delete[] arr;
 	return 0;
 }
